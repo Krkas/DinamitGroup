@@ -1,0 +1,16 @@
+import java.util.ArrayList;
+
+public class ConjuntoProfesores {
+    static ArrayList<Profesor> listado = new ArrayList<>();
+    public ConjuntoProfesores()// Contructor
+    {
+    }
+    public static void agregar(Profesor P)//Agrega nuevos elementos a la lista
+    {
+        listado.add(P);
+    }
+    public static int getTotal() //Devuelve el total de elementos
+    {
+        return listado.size();
+    }
+}
