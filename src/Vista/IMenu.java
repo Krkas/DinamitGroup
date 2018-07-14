@@ -4,14 +4,18 @@
  * and open the template in the editor.
  */
 package Vista;
+
 import Controlador.*;
+import java.awt.event.ActionEvent;
 
 /**
  *
  * @author krlos
  */
 public class IMenu extends javax.swing.JFrame {
+
     private Ctrl_Reportes CTRL;
+
     /**
      * Creates new form IMenu
      */
@@ -19,23 +23,12 @@ public class IMenu extends javax.swing.JFrame {
         CTRL = r;
         initComponents();
         setLocationRelativeTo(null);
-        fecha_inicial.setText("01/02/2014");
+        //   fecha_inicial.setText("01/02/2014");
     }
-    
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        String f_li, f_ls;
-        f_li = fecha_inicial.getText();
-        f_ls = fecha_final.getText();
-        if(f_li == null) {
-            f_li = "01/02/2014";
-        }
-        if(f_ls == null) {
-            return;
-        }
-        
-        CTRL.i_Consultar_Post(f_li, f_ls);
-    } 
-    
+
+    public void ReportarTrabajosProfesoresActionPerformed(java.awt.event.ActionEvent evt){ //Funcion agregada para arreglar un problema de sistema operativo, no borrar
+        return;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,7 +43,7 @@ public class IMenu extends javax.swing.JFrame {
         ConsultarTrabajosProfesor = new javax.swing.JButton();
         ReportarTrabajosProfesores = new javax.swing.JButton();
         ReportarTrabajosCentros = new javax.swing.JButton();
-        ReportarTrabajosPostgrados = new javax.swing.JButton();
+        RepTrabajosPostgrados = new javax.swing.JButton();
         volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -83,10 +76,25 @@ public class IMenu extends javax.swing.JFrame {
         });
 
         ReportarTrabajosProfesores.setText("Reportar Trabajos de Profesores");
+        ReportarTrabajosProfesores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportarTrabajosProfesoresActionPerformed(evt);
+            }
+        });
 
         ReportarTrabajosCentros.setText("Reportar Trabajos de Centro");
+        ReportarTrabajosCentros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportarTrabajosCentrosActionPerformed(evt);
+            }
+        });
 
-        ReportarTrabajosPostgrados.setText("Reportar Trabajos de Postgrado");
+        RepTrabajosPostgrados.setText("Reportar Trabajos de Postgrado");
+        RepTrabajosPostgrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RepTrabajosPostgradosActionPerformed(evt);
+            }
+        });
 
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +136,7 @@ public class IMenu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ReportarTrabajosProfesores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ReportarTrabajosCentros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ReportarTrabajosPostgrados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(RepTrabajosPostgrados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGap(82, 82, 82)
@@ -160,7 +168,7 @@ public class IMenu extends javax.swing.JFrame {
                     .addComponent(CargarProfesores))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ReportarTrabajosPostgrados)
+                    .addComponent(RepTrabajosPostgrados)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ConsultarTrabajosProfesor)
@@ -171,16 +179,16 @@ public class IMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     //Cargar 
     private void CargarTrabajosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarTrabajosActionPerformed
         CTRL.i_CargarTrabajos();
     }//GEN-LAST:event_CargarTrabajosActionPerformed
 
     private void ConsultarTrabajosProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarTrabajosProfesorActionPerformed
-       CTRL.ventanaAnterior(1);
-       System.out.print("ingrso a consultar en modo comision");
-        CTRL.i_ConsultarTrabajos(); 
+        CTRL.ventanaAnterior(1);
+        System.out.print("ingrso a consultar en modo comision");
+        CTRL.i_ConsultarTrabajos();
     }//GEN-LAST:event_ConsultarTrabajosProfesorActionPerformed
     //cargar profesores
     private void CargarProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarProfesoresActionPerformed
@@ -190,18 +198,26 @@ public class IMenu extends javax.swing.JFrame {
     private void volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volverActionPerformed
         CTRL.i_SelectUser();
     }//GEN-LAST:event_volverActionPerformed
-    
-    private void ReportarTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {                                                           
+
+    private void ReportarTrabajosCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportarTrabajosCentrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReportarTrabajosCentrosActionPerformed
+
+    private void RepTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepTrabajosPostgradosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RepTrabajosPostgradosActionPerformed
+
+    private void ReportarTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {
         CTRL.i_ReportePostgrados();
-    }     
-    
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargarProfesores;
     private javax.swing.JButton CargarTrabajos;
     private javax.swing.JButton ConsultarTrabajosProfesor;
+    private javax.swing.JButton RepTrabajosPostgrados;
     private javax.swing.JButton ReportarTrabajosCentros;
-    private javax.swing.JButton ReportarTrabajosPostgrados;
     private javax.swing.JButton ReportarTrabajosProfesores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

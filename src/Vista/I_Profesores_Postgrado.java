@@ -15,7 +15,7 @@ public class I_Profesores_Postgrado extends javax.swing.JFrame {
      * Creates new form I_Reportar_Profesores
      * @param r
      */
-    public I_Profesores_Postgrado(Ctrl_Reportes r) {
+    public I_Profesores_Postgrado(Ctrl_Reportes r) { // Construcctor
         CTRL = r;
         initComponents();
         setLocationRelativeTo(null);
@@ -166,7 +166,7 @@ public class I_Profesores_Postgrado extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new I_Profesores_Postgrado().setVisible(true);
+             //   I_Profesores_Postgrado Instance = new I_Profesores_Postgrado().setVisible(true);
             }
         });
     }

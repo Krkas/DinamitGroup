@@ -4,6 +4,11 @@
  * and open the template in the editor.
  */
 package Vista;
+import Controlador.*;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  *
@@ -82,6 +87,11 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
         }
 
         jToggleButton1.setText("Consultar");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Volver");
 
@@ -147,6 +157,15 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+       Ctrl_Reportes A = Ctrl_Reportes.getInstance();
+        try {
+            A.i_Consultar_Prof();
+        } catch (ParseException ex) {
+            Logger.getLogger(I_Reportar_Profesores.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
     /**
      * @param args the command line arguments
