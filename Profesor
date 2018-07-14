@@ -1,0 +1,67 @@
+//
+public class Profesor {
+//------------------Atributos---------------------------------------
+    private String centro;
+    private String Nombre;
+    private String Apellido;
+    private String ci;
+//------------------Metodos-----------------------------------------
+//---------------Constructora---------------------------------------
+    public Profesor()
+    {
+        centro = "";
+        Nombre = "";
+        Apellido = "";
+        ci = "";
+    }
+    //---------------------Gets-----------------------------------------
+     public String getci()
+    {
+        return ci;
+    }
+     public String getApellido()
+    {
+        return Apellido;
+    }
+     public String getNombre()
+    {
+        return Nombre;
+    }     
+     public String getCentro()
+    {
+        return centro;
+    }
+    public Profesor getProfesor()
+    {
+        return this;
+    }
+//-------------LlenarCampos: le da valor a los atributos
+//-------------del Profesor, segun una linea string dada
+//-------------que sigue el formato: ci#Apellido#Nombre#centro“;”
+    public void llenarCampos(String lineas)
+    { 
+       int cont1;
+       int cont2;
+       char[] array = new char[lineas.length()];
+       lineas.getChars(0, lineas.length(), array, 0) ;
+       for(int i= 0; array[i] != ';' ; i++)
+       {
+           cont1 = i;
+           cont2 = 0;
+           while(array[cont1] != '#' && array[cont1] != ';') cont1++;
+           char[] pibot = new char[cont1-i];
+           while(array[i] != '#' && array[i] != ';')
+           {
+               pibot[cont2] = array[i];
+               cont2++;
+               i++;
+           }           
+           if( ci.isEmpty() ) ci = String.valueOf(pibot);
+           else if( Apellido.isEmpty() ) Apellido = String.valueOf(pibot);
+           else if( Nombre.isEmpty() ) Nombre = String.valueOf(pibot);
+           else if( centro.isEmpty()) centro = String.valueOf(pibot);
+           if(array[i]==';') i--;
+       }
+    }
+//    
+}
