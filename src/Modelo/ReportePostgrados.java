@@ -73,5 +73,91 @@ public class ReportePostgrados extends Reporte{
         ListaProf.add(ConjuntoProf.encontrarProf(ci_t));
     }
         
+/*    Codigo de Christian
+   //METODOS DE CONSULTAR
+    public boolean Es_Valido(Date Fecha) throws ParseException{
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Date Fecha_Minima = sdf.parse("01/01/2014"); //Fecha Tope
+        Date Fecha_Actual = new Date(); //Fecha Actual
+        
+        if( Fecha.after(Fecha_Minima) && Fecha.before(Fecha_Actual) ) //Si esta en el rango
+            return true;
+        
+        else if( Fecha.equals(Fecha_Minima) )
+            return true;
+        
+        else if( Fecha.equals(Fecha_Actual) )
+            return true;
+        
+        return false;
+        
+    }
     
+    public void i_Consultar_Prof(Date fech_li,Date fech_ls,int ord) throws ParseException{
+       /* 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        
+        Date Fecha_Minima = sdf.parse("01/01/2014"); //Fecha Tope
+        Date Fecha_Actual = new Date(); //Fecha Actual
+        
+        Date Fecha_Inicial = null;
+        Date Fecha_Final = null;
+        
+        if( fech_li == null)
+            fech_li = Fecha_Minima;
+        
+        if( fech_ls == null)
+            fech_ls = Fecha_Actual;
+        
+        if( !Es_Valido(fech_li) ){
+            
+            if( fech_li.before(Fecha_Minima) )
+                Fecha_Inicial = Fecha_Minima;
+            
+            else if( fech_li.after(Fecha_Actual) )
+                Fecha_Inicial = Fecha_Actual;
+        }
+        else
+            Fecha_Inicial = fech_li;
+        
+        if( !Es_Valido(fech_ls) ){
+            
+            if( fech_ls.before(Fecha_Minima) )
+                Fecha_Final = Fecha_Minima;
+            
+            else if( fech_ls.after(Fecha_Actual))
+                Fecha_Final = Fecha_Actual;
+        }
+        
+        else
+            Fecha_Final = fech_ls;
+        
+        if( !Fecha_Inicial.before(Fecha_Final) || !Fecha_Inicial.equals(Fecha_Final) ){
+            return;
+        } // Saida no exitosa
+        
+        //Buscar Profesores
+        */
+    /*
+        ConjuntoTrabajos A = new ConjuntoTrabajos();
+        System.out.println ("Hola");
+        ArrayList <Trabajo> Profesores = A.getListado();
+
+        int Tamano = A.getTotal();
+
+        Iterator aux = Profesores.iterator();
+        
+        Trabajo Existentes;
+        
+        for(int i = 0; i < Tamano; i++){
+            Existentes = (Trabajo) aux.next();
+            System.out.println(Existentes.getTitulo());
+        }
+        
+    }
+
+
+ */
 }
