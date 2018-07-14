@@ -5,6 +5,8 @@ import Modelo.Profesor;
 import Modelo.Trabajo;
 import java.io.*;
 import Vista.*;
+import java.text.ParseException;
+import java.util.Date;
 import javax.swing.JFrame;
 
 import java.util.Iterator;
@@ -13,15 +15,9 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class Ctrl_Reportes {
-    private static final Ctrl_Reportes INSTANCE = new Ctrl_Reportes();
-    private Ctrl_Reportes() {
-        ICargarProf=new ICargarProfesores(this);
-        ICargarTrab = new ICargarTrabajos(this);
-        private I_Profesores_Postgrado IReportarPost;
-        IMen= new IMenu(this);
-        ISelectUs = new ISelectUser(this);
-        IConsultarTrab= new IConsultarTrabajos(this);
-    } 
+    
+    private static final Ctrl_Reportes INSTANCE = new Ctrl_Reportes(); //Clase Singleton
+    
     public static Ctrl_Reportes getInstance() {
         return INSTANCE;
     }
@@ -30,12 +26,12 @@ public class Ctrl_Reportes {
     private ConjuntoTrabajos ct;
     
     //atributos de interfaces graficas
-    private IMenu IMen;
-    private ISelectUser ISelectUs;
-    private ICargarProfesores ICargarProf;
-    private ICargarTrabajos ICargarTrab;
-    private IConsultarTrabajos IConsultarTrab;
-    
+    private final IMenu IMen;  //Instancia de Imenu
+    private final ISelectUser ISelectUs; //Instancia de seleccion de usuario
+    private ICargarProfesores ICargarProf; // Instancia de Cargar Profesores
+    private final ICargarTrabajos ICargarTrab; //Instancia de Cargar trabajos
+    private IConsultarTrabajos IConsultarTrab; //Instancia de Iconsultar
+    private I_Profesores_Postgrado IReportarPost;  //Instacia de Reportar Postrgrado
     private JFrame ventanaAnterior;
     
     public void ocultarTodo() {
@@ -55,9 +51,17 @@ public class Ctrl_Reportes {
     public void ventanaAnterior(int tipoUser) { //1 es comision
         if(tipoUser == 1) {
             ventanaAnterior = IMen;
-        } else if(tipoUser ==0 ) {
+        } else if(tipoUser == 0 ) {
             ventanaAnterior = ISelectUs;
         }
+    }
+    
+    public ConjuntoTrabajos get_Instance_ConjuntoTrabajos (){
+        return ct;
+    }
+    
+    public ConjuntoProfesores get_Instance_ConjuntoProfesores (){
+        return cp;
     }
     
     public void volver() {
@@ -118,7 +122,15 @@ public class Ctrl_Reportes {
         return ct.getTotal();
 }
     
-    
+        private Ctrl_Reportes() {                                       //Constructor
+        ICargarProf = new ICargarProfesores(this);
+        ICargarTrab = new ICargarTrabajos(this);
+        IReportarPost = null;
+        IMen = new IMenu(this);
+        ISelectUs = new ISelectUser(this);
+        IConsultarTrab = new IConsultarTrabajos(this);
+    } 
+        
     //METODOS DE INTERFACES
     public void i_CargarProfesores() {
         if(ICargarProf == null) {
@@ -161,7 +173,16 @@ public class Ctrl_Reportes {
         IConsultarTrab.setVisible(true);
     }
     
+    
     //METODOS DE REPORTES
+    public void i_Consultar_Prof() throws ParseException{
+    
+        Date Inicial = new Date();
+        return;
+        
+    }
+    
+    /*
     
         //Reportar Trabajos Profesores
     public void i_Consultar_Prof(Date fech_li, Date fech_ls, int ord) {
@@ -209,6 +230,7 @@ public class Ctrl_Reportes {
         //
     
        //Conusltar Postgrados
+    */
      public void i_Consultar_Post(String fecha_li, String fecha_ls) {
          
          
@@ -230,5 +252,5 @@ public class Ctrl_Reportes {
       
        
     }
-    
+      
 }
