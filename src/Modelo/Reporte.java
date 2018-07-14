@@ -1,10 +1,8 @@
-import Modelo.Profesor;
-import Modelo.Trabajo;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import Modelo.Trabajo;
 /**
 * @Autor Chritian
 * @Reparada por CarlosDraftx
