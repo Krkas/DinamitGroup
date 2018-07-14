@@ -43,6 +43,26 @@ public class Profesor {
     {
         cant_trab ++;
     }
+    public void setNombre(String Name)
+    {
+        Nombre = Name;
+    }
+    public void setApellido(String Second_Name)
+    {
+        Apellido = Second_Name;
+    }
+    public void setCentro(String Centro)
+    {
+        centro = Centro;
+    }
+    public void setci(String Ci)
+    {
+        ci = Ci;
+    }
+    public void setCant_Trab(int Cant_Jobs)
+    {
+        cant_trab = Cant_Jobs;
+    }
     
     public void llenarCampos(String linea) {
         int li_str=0, ls_str=1;
