@@ -5,15 +5,13 @@
  */
 package Modelo;
 import Controlador.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 /**
  *
  * @author Ugueto
  */
-
-
 public class ReportePostgrados extends Reporte{
-    
     
     private Ctrl_Reportes Aux = Ctrl_Reportes.getInstance();
         
@@ -22,7 +20,12 @@ public class ReportePostgrados extends Reporte{
     private ArrayList <Profesor> ListaProf = Aux.get_Instance_ConjuntoProfesores().getListado();
         
     private int Tamano = ListaProf.size();
+   
+    public ReportePostgrados()throws ParseException{ 
+        super();
         
+    }
+    
     public void ordenar(){
         
         Profesor aux = new Profesor();
