@@ -13,20 +13,19 @@ import java.util.ArrayList;
  */
 public class ReportePostgrados extends Reporte{
     
-    private Ctrl_Reportes Aux = Ctrl_Reportes.getInstance();
+    private Ctrl_Reportes Aux = Ctrl_Reportes.getInstance(); 
         
-    private ConjuntoProfesores ConjuntoProf = Aux.get_Instance_ConjuntoProfesores();
+    private ConjuntoProfesores ConjuntoProf = Aux.get_Instance_ConjuntoProfesores(); //aqui nombra guarda el sobrenombre con el q trabajara
     
-    private ArrayList <Profesor> ListaProf = Aux.get_Instance_ConjuntoProfesores().getListado();
+    private ArrayList <Profesor> ListaProf = Aux.get_Instance_ConjuntoProfesores().getListado(); //trabaja con la Lista de profesores de ConjuntoProfesores
         
-    private int Tamano = ListaProf.size();
+    private int Tamano = ListaProf.size(); //variable
    
-    public ReportePostgrados()throws ParseException{ 
+    public ReportePostgrados()throws ParseException{ //Constructor
         super();
-        
     }
     
-    public void ordenar(){
+    public void ordenar(){ //ordenamiento
         
         Profesor aux = new Profesor();
                 
@@ -72,8 +71,8 @@ public class ReportePostgrados extends Reporte{
         } 
     }
        
-    public void listarProf(String ci_t){
-        ListaProf.add(ConjuntoProf.encontrarProf(ci_t));
+    public void listarProf(String ci_Autor){ // Agrega al profesor a la lista de profesores de la escuela que han presentado postgrados
+        ListaProf.add(ConjuntoProf.encontrarProf(ci_Autor));//
     }
         
 /*    Codigo de Christian

@@ -45,10 +45,12 @@ public class Trabajo{
     public String getFechaDefensa() {
         return fechaDefensa;
     }
-   public String getCi() {
+    public String getCi() {
         return ci;
     }
-    
+    public String getCi_2(){
+        return ci_2;
+    }
     public String getCi_t() {
         return ci_t;
     }

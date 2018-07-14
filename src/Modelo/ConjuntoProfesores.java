@@ -11,9 +11,9 @@ import java.util.ArrayList;
  */
 public class ConjuntoProfesores {
      
-     private final ArrayList<Profesor> listado;
+    private static ArrayList<Profesor> listado;
     
-     public ConjuntoProfesores() {
+    public ConjuntoProfesores() {
         listado = new ArrayList<>();
     }
      
@@ -21,11 +21,11 @@ public class ConjuntoProfesores {
         listado.add(P);
     }
  
-    public ArrayList<Profesor> getListado()
+    static public ArrayList<Profesor> getListado()
     {
          return listado;
     }
-    public int getTotal() {
+    static public int getTotal() {
         return listado.size();
     }
      
