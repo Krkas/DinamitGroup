@@ -12,17 +12,17 @@ import java.text.ParseException;
  * @author Ugueto
  */
 public class Consulta extends Reporte{
-    static private int numTrab;
-    static private String ci_profe;
+     private int numTrab;
+     private String ci_profe;
     //--------------Constructor-------------------
     public Consulta()throws ParseException{ 
         super();
     }
     //-------------------------------------
-    static public void setNumTrab(int N){
+     public void setNumTrab(int N){
         numTrab=N;
     }
-    static public int getNumTrab(){
+     public int getNumTrab(){
         return numTrab;
     }
     

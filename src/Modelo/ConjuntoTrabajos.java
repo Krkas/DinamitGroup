@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * @author Ugueto
  */
 public class ConjuntoTrabajos{
-    static private ArrayList<Trabajo> listado;
+    private ArrayList<Trabajo> listado;
      
     public ConjuntoTrabajos() {
         listado = new ArrayList<>();
@@ -20,10 +20,10 @@ public class ConjuntoTrabajos{
         listado.add(T);
     }
     
-    static public ArrayList<Trabajo> getListado(){
+    public ArrayList<Trabajo> getListado(){
         return listado;
     }
-    static public int getTotal() {
+    public int getTotal() {
         return listado.size();
     }
 }

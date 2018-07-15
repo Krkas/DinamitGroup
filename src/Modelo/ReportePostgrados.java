@@ -13,20 +13,20 @@ import java.util.ArrayList;
  */
 public class ReportePostgrados extends Reporte{
     
-    private Ctrl_Reportes Aux = Ctrl_Reportes.getInstance(); 
+    private final Ctrl_Reportes Aux = Ctrl_Reportes.getInstance(); 
         
-    private ConjuntoProfesores ConjuntoProf = Aux.get_Instance_ConjuntoProfesores(); //aqui nombra guarda el sobrenombre con el q trabajara
+    private final ConjuntoProfesores ConjuntoProf = Aux.get_Inst_CP(); //aqui nombra guarda el sobrenombre con el q trabajara
     
-    private ArrayList <Profesor> ListaProf = Aux.get_Instance_ConjuntoProfesores().getListado(); //trabaja con la Lista de profesores de ConjuntoProfesores
-        
-    private int Tamano = ListaProf.size(); //variable
+    @SuppressWarnings("FieldNameHidesFieldInSuperclass")
+    private final ArrayList <Profesor> ListaProf = Aux.get_Inst_CP().getListado(); //trabaja con la Lista de profesores de ConjuntoProfesores
+ 
    
     public ReportePostgrados()throws ParseException{ //Constructor
         super();
     }
     
-    public void ordenar(){ //ordenamiento
-        
+    public void ordenar(){ //ordenamiento Apellido-Nombre
+        int Tamano = ListaProf.size();
         Profesor aux = new Profesor();
                 
         for(int i = Tamano -1; i > 0 ; i--){      

@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class ConjuntoProfesores {
      
-    private static ArrayList<Profesor> listado;
+    private ArrayList<Profesor> listado;
     
     public ConjuntoProfesores() {
         listado = new ArrayList<>();
@@ -21,11 +21,10 @@ public class ConjuntoProfesores {
         listado.add(P);
     }
  
-    static public ArrayList<Profesor> getListado()
-    {
+    public ArrayList<Profesor> getListado(){
          return listado;
     }
-    static public int getTotal() {
+    public int getTotal() {
         return listado.size();
     }
      
@@ -38,8 +37,7 @@ public class ConjuntoProfesores {
             if( (listado.get(i).getCi()).equals(ci) )
                 return listado.get(i);
         
-        }
-        
+        }        
         return null;
        }     
      

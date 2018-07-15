@@ -14,11 +14,16 @@ public abstract class Reporte {
     protected SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     protected ArrayList<Trabajo> ListaTrab;
     protected ArrayList <Profesor> ListaProf;
+    //..............Constructor....................
     public Reporte() throws ParseException
-    {        
-        fecha_li = sdf.parse("01/01/2014");
+    {   
+        ListaTrab= new ArrayList<>();
+        ListaProf= new ArrayList<>();
+        
+        fecha_li = sdf.parse("01/02/2014");
         fecha_ls = sdf.parse(sdf.format(fecha_ls));       
     }
+    //----------------------------------------------------------------------------------
     public boolean esValido(String fecha_li,String fecha_ls) throws ParseException
     {
         boolean fli = true;
