@@ -127,6 +127,7 @@ public class ICargarTrabajos extends javax.swing.JFrame {
         } else {
            Msj.setText("Archivo invalido"); 
         }    
+        CTRL.activarOpcionesReportesDeMenu(CTRL.Hay_Conjuntos()); //Verifica si hay ventanas
     }//GEN-LAST:event_desplegar_msj
 
     private void MsjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MsjActionPerformed
