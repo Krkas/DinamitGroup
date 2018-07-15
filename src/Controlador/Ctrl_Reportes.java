@@ -32,7 +32,8 @@ public class Ctrl_Reportes {
     private final ICargarTrabajos ICargarTrab; //Instancia de Cargar trabajos
     private IConsultarTrabajos IConsultarTrab; //Instancia de Iconsultar
     private I_Profesores_Postgrado IReportarPost;  //Instacia de Reportar Postrgrado
-    private JFrame ventanaAnterior;
+    private I_Reportar_Profesores IReportarProf; //Instancia de IReportarProf
+    private JFrame ventanaAnterior; //Te permite retroceder la ventana
     
     public void ocultarTodo() {
         IMen.setVisible(false);
@@ -74,6 +75,12 @@ public class Ctrl_Reportes {
         ISelectUs.setVisible(true);
     }
     
+    public boolean Hay_Conjuntos (){ //Identifica si ya fueron cargados los trabajos y los profesores
+        if(ct == null || cp == null) {
+            return false;
+        } 
+        return (ct.getListado() != null) && (cp.getListado() != null);
+    }
         
     
     
@@ -129,6 +136,7 @@ public class Ctrl_Reportes {
         IMen = new IMenu(this);
         ISelectUs = new ISelectUser(this);
         IConsultarTrab = new IConsultarTrabajos(this);
+        activarOpcionesReportesDeMenu(false);
     } 
         
     //METODOS DE INTERFACES
@@ -173,6 +181,14 @@ public class Ctrl_Reportes {
         IConsultarTrab.setVisible(true);
     }
     
+    public void activarOpcionesReportesDeMenu(boolean f){ // Activa/Desactiva botones de Imenu
+        
+        IMen.activarPostgrados(f);
+        IMen.activarRepProfesor(f);
+        IMen.activarConsultar(f); 
+        IMen.activarCentro(f);
+        
+    }
     
     //METODOS DE REPORTES
     public void i_Consultar_Prof() throws ParseException{
