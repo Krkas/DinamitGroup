@@ -19,6 +19,7 @@ public class ICargarProfesores extends javax.swing.JFrame {
     public ICargarProfesores(Ctrl_Reportes r) {
         CTRL=r;
         initComponents();
+        Direccion_Profesor.setText("./profs_Centros.txt");
         setLocationRelativeTo(null);
     }
 
