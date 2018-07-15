@@ -137,6 +137,7 @@ public class ICargarProfesores extends javax.swing.JFrame {
         } else {
            Msj_Profesor.setText("Archivo invalido"); 
         }    
+        CTRL.activarOpcionesReportesDeMenu(CTRL.Hay_Conjuntos());
     }//GEN-LAST:event_desplegar_msj
 
     private void Msj_ProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Msj_ProfesorActionPerformed
