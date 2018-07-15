@@ -14,6 +14,23 @@ import java.awt.event.ActionEvent;
  */
 public class IMenu extends javax.swing.JFrame {
 
+    public void activarPostgrados(boolean b) {
+        RepTrabajosPostgrados.setEnabled(b);
+   
+    }
+
+    public void activarRepProfesor(boolean b) {
+        ReportarTrabajosProfesores.setEnabled(b);
+    }
+
+    public void activarConsultar(boolean b) {
+        ConsultarTrabajosProfesor.setEnabled(b);
+    }
+    
+    public void activarCentro(boolean b){
+        ReportarTrabajosCentros.setEnabled(b);
+    }
+    
     private Ctrl_Reportes CTRL;
 
     /**
