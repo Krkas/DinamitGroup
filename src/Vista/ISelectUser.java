@@ -107,7 +107,8 @@ public class ISelectUser extends javax.swing.JFrame {
 
     private void personaInteresadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personaInteresadaActionPerformed
         CTRL.ventanaAnterior(0);
-        CTRL.i_ConsultarTrabajos();
+         if(CTRL.Hay_Conjuntos())
+            CTRL.i_ConsultarTrabajos(); //Evitar Abrir la Ventana, sin tener trabajos cargados
     }//GEN-LAST:event_personaInteresadaActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
