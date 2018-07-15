@@ -85,13 +85,13 @@ public class Ctrl_Reportes {
     
     
     //METODOS DE LA CLASE CONTROLADORA
-    public int i_copiar_archivo_prof() {
+    public int i_copiar_archivo_prof(String dir) {
         String linea;
         cp = new ConjuntoProfesores();  //Prueba de carga de profesores en esta estructura
         Profesor P;
         
        try {
-            FileReader fr = new FileReader("profs_Centros.txt");
+            FileReader fr = new FileReader(dir);
             BufferedReader br = new BufferedReader(fr);
                    
             while((linea = br.readLine()) != null && linea.equals("EOF") == false) {
@@ -107,11 +107,11 @@ public class Ctrl_Reportes {
         return cp.getTotal();
     }
     
-     public int i_copiar_archivo_trab() {
+     public int i_copiar_archivo_trab(String dir) {
         String linea;
         ct = new ConjuntoTrabajos();        
         try {
-            FileReader fr = new FileReader("trabajos.txt");
+            FileReader fr = new FileReader(dir);
             BufferedReader br = new BufferedReader(fr);
             while((linea = br.readLine()) != null && linea.equals("EOF") == false) {
                 System.out.println("se ha leido la linea "+linea);
