@@ -17,7 +17,9 @@ public class ICargarTrabajos extends javax.swing.JFrame {
     public ICargarTrabajos(Ctrl_Reportes r) {
         CTRL = r;
         initComponents();
+        jTextField1.setText("./trabajos.txt");
         setLocationRelativeTo(null);
+        
     }
 
     /**
