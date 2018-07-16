@@ -20,31 +20,36 @@ public class ReporteProfesores extends Reporte {
     }
     //-----------Metodos---------------------------
     public void ordenar(int ord){
+                                  
+        int pos;
         Tamano = ListaProf.size();
         Profesor aux = new Profesor();
         if(ord == 1){ //numero de trabajos
-            System.out.println("entro a orden por numero de trabajos");
+            //System.out.println("entro a orden por numero de trabajos");
             for(int i = Tamano-1; i > 0 ; i--){      
                 for(int j=0; j < i ; j++){
-                    System.out.println("Comparando "+ListaProf.get(j).getCantTrab()+" > "+ListaProf.get(j+1).getCantTrab());
+                    //System.out.println("Comparando "+ListaProf.get(j).getCantTrab()+" > "+ListaProf.get(j+1).getCantTrab());
                     if(ListaProf.get(j).getCantTrab() > ListaProf.get(j+1).getCantTrab()){ 
-                        System.out.println("es mayor los cambio");   
-                            System.out.println(ListaProf.get(j+1).getApellido());
+                        //System.out.println("es mayor los cambio");   
+                            //System.out.println(ListaProf.get(j+1).getApellido());
+                            
                             aux.setApellido(ListaProf.get(j).getApellido());
                             aux.setNombre(ListaProf.get(j).getNombre());
                             aux.setCentro(ListaProf.get(j).getCentro());
                             aux.setci(ListaProf.get(j).getCi());
+                            aux.setCant_Trab(ListaProf.get(j).getCantTrab());
                             
                             ListaProf.get(j).setApellido(ListaProf.get(j+1).getApellido());
                             ListaProf.get(j).setNombre(ListaProf.get(j+1).getNombre());
                             ListaProf.get(j).setCentro(ListaProf.get(j+1).getCentro());
                             ListaProf.get(j).setci(ListaProf.get(j+1).getCi());
+                            ListaProf.get(j).setCant_Trab(ListaProf.get(j+1).getCantTrab());
 
                             ListaProf.get(j+1).setApellido(aux.getApellido());
-                            System.out.println(ListaProf.get(j+1).getApellido());
                             ListaProf.get(j+1).setNombre(aux.getNombre());
                             ListaProf.get(j+1).setCentro(aux.getCentro());
                             ListaProf.get(j+1).setci(aux.getCi());
+                            ListaProf.get(j+1).setCant_Trab(aux.getCantTrab());
                     }
                 }
             }
@@ -59,16 +64,19 @@ public class ReporteProfesores extends Reporte {
                             aux.setNombre(ListaProf.get(j).getNombre());
                             aux.setCentro(ListaProf.get(j).getCentro());
                             aux.setci(ListaProf.get(j).getCi());
-
+                            aux.setCant_Trab(ListaProf.get(j).getCantTrab());
+                            
                             ListaProf.get(j).setApellido(ListaProf.get(j+1).getApellido());
                             ListaProf.get(j).setNombre(ListaProf.get(j+1).getNombre());
                             ListaProf.get(j).setCentro(ListaProf.get(j+1).getCentro());
                             ListaProf.get(j).setci(ListaProf.get(j+1).getCi());
-
+                            ListaProf.get(j).setCant_Trab(ListaProf.get(j+1).getCantTrab());
+                            
                             ListaProf.get(j+1).setApellido(aux.getApellido());
                             ListaProf.get(j+1).setNombre(aux.getNombre());
                             ListaProf.get(j+1).setCentro(aux.getCentro());
                             ListaProf.get(j+1).setci(aux.getCi());
+                            ListaProf.get(j+1).setCant_Trab(aux.getCantTrab());
                         }
                     }
                     if(ListaProf.get(j).getApellido().compareTo(ListaProf.get(j+1).getApellido()) > 0){
@@ -77,16 +85,19 @@ public class ReporteProfesores extends Reporte {
                         aux.setNombre(ListaProf.get(j).getNombre());
                         aux.setCentro(ListaProf.get(j).getCentro());
                         aux.setci(ListaProf.get(j).getCi());
-
+                        aux.setCant_Trab(ListaProf.get(j).getCantTrab());
+                        
                         ListaProf.get(j).setApellido(ListaProf.get(j+1).getApellido());
                         ListaProf.get(j).setNombre(ListaProf.get(j+1).getNombre());
                         ListaProf.get(j).setCentro(ListaProf.get(j+1).getCentro());
                         ListaProf.get(j).setci(ListaProf.get(j+1).getCi());
-
+                        ListaProf.get(j).setCant_Trab(ListaProf.get(j+1).getCantTrab());
+                        
                         ListaProf.get(j+1).setApellido(aux.getApellido());
                         ListaProf.get(j+1).setNombre(aux.getNombre());
                         ListaProf.get(j+1).setCentro(aux.getCentro());
                         ListaProf.get(j+1).setci(aux.getCi());
+                        ListaProf.get(j+1).setCant_Trab(aux.getCantTrab());
                     }
                 }
             }
