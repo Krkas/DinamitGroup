@@ -29,6 +29,10 @@ public class Ctrl_Reportes {
     //Instancias de ConjuntoTrabajos y ConjuntoProfesores--------
     private ConjuntoProfesores cp; 
     private ConjuntoTrabajos ct;
+    //Instancias de Reportes menos la de consultar, q falta.
+    private ReporteProfesores RePro;
+    private ReportePostgrados RePost;
+    private ReporteCentros ReCentros;
     //-----------------------------------------------------------
     
     //atributos de interfaces graficas
