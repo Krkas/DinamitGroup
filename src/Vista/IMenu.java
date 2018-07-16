@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Vista;
 
 import Controlador.*;
@@ -13,7 +9,9 @@ import java.awt.event.ActionEvent;
  * @author krlos
  */
 public class IMenu extends javax.swing.JFrame {
-
+    
+    private Ctrl_Reportes CTRL;
+    
     public void activarPostgrados(boolean b) {
         RepTrabajosPostgrados.setEnabled(b);
    
@@ -30,9 +28,6 @@ public class IMenu extends javax.swing.JFrame {
     public void activarCentro(boolean b){
         ReportarTrabajosCentros.setEnabled(b);
     }
-    
-    private Ctrl_Reportes CTRL;
-
     /**
      * Creates new form IMenu
      */
@@ -40,12 +35,9 @@ public class IMenu extends javax.swing.JFrame {
         CTRL = r;
         initComponents();
         setLocationRelativeTo(null);
-        //   fecha_inicial.setText("01/02/2014");
+        //   fecha_inicial.setText("01/0/2014");
     }
 
-    public void ReportarTrabajosProfesoresActionPerformed(java.awt.event.ActionEvent evt){ //Funcion agregada para arreglar un problema de sistema operativo, no borrar
-        return;
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +52,7 @@ public class IMenu extends javax.swing.JFrame {
         ConsultarTrabajosProfesor = new javax.swing.JButton();
         ReportarTrabajosProfesores = new javax.swing.JButton();
         ReportarTrabajosCentros = new javax.swing.JButton();
-        RepTrabajosPostgrados = new javax.swing.JButton();
+        ReportarTrabajosPostgrados = new javax.swing.JButton();
         volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -197,17 +189,21 @@ public class IMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Cargar 
+    //Cargar Trabajos--------------------------------------------------------------------------------------------------
     private void CargarTrabajosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarTrabajosActionPerformed
         CTRL.i_CargarTrabajos();
     }//GEN-LAST:event_CargarTrabajosActionPerformed
-
+//--------REPORTES--------------------------------------------------------------------------------------------------
+    public void ReportarTrabajosProfesoresActionPerformed(java.awt.event.ActionEvent evt){ 
+        CTRL.ventanaAnterior(1);
+        CTRL.i_Reporte_Profesores();      
+    }
     private void ConsultarTrabajosProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarTrabajosProfesorActionPerformed
         CTRL.ventanaAnterior(1);
-        System.out.print("ingrso a consultar en modo comision");
+        System.out.print("ingreso a consultar en modo comision");
         CTRL.i_ConsultarTrabajos();
     }//GEN-LAST:event_ConsultarTrabajosProfesorActionPerformed
-    //cargar profesores
+    //Cargar profesores
     private void CargarProfesoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarProfesoresActionPerformed
         CTRL.i_CargarProfesores();
     }//GEN-LAST:event_CargarProfesoresActionPerformed
@@ -220,20 +216,17 @@ public class IMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReportarTrabajosCentrosActionPerformed
 
-    private void RepTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepTrabajosPostgradosActionPerformed
-        // TODO add your handling code here:
+    private void ReportarTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepTrabajosPostgradosActionPerformed
+        CTRL.i_Reporte_Postgrados();// TODO add your handling code here:
     }//GEN-LAST:event_RepTrabajosPostgradosActionPerformed
 
-    private void ReportarTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {
-        CTRL.i_ReportePostgrados();
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargarProfesores;
     private javax.swing.JButton CargarTrabajos;
     private javax.swing.JButton ConsultarTrabajosProfesor;
-    private javax.swing.JButton RepTrabajosPostgrados;
+    private javax.swing.JButton ReportarTrabajosPostgrados;
     private javax.swing.JButton ReportarTrabajosCentros;
     private javax.swing.JButton ReportarTrabajosProfesores;
     private javax.swing.JLabel jLabel1;
