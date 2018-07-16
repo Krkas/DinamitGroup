@@ -3,9 +3,14 @@ import Modelo.ConjuntoProfesores;
 import Modelo.ConjuntoTrabajos;
 import Modelo.Profesor;
 import Modelo.Trabajo;
+import Modelo.ReporteCentros;
+import Modelo.ReportePostgrados;
+import Modelo.ReporteProfesores;
 import java.io.*;
 import Vista.*;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JFrame;
 
@@ -21,9 +26,10 @@ public class Ctrl_Reportes {
     public static Ctrl_Reportes getInstance() {
         return INSTANCE;
     }
-    
-    private ConjuntoProfesores cp; //Por ahora, esto se pone aqui para hacer las pruebas, luego se decide donde se guardan estas instancias
+    //Instancias de ConjuntoTrabajos y ConjuntoProfesores--------
+    private ConjuntoProfesores cp; 
     private ConjuntoTrabajos ct;
+    //-----------------------------------------------------------
     
     //atributos de interfaces graficas
     private final IMenu IMen;  //Instancia de Imenu
@@ -33,6 +39,7 @@ public class Ctrl_Reportes {
     private IConsultarTrabajos IConsultarTrab; //Instancia de Iconsultar
     private I_Profesores_Postgrado IReportarPost;  //Instacia de Reportar Postrgrado
     private I_Reportar_Profesores IReportarProf; //Instancia de IReportarProf
+    private I_Reportar_Centros IReportarCentro; //Instancia de Reportar Centros
     private JFrame ventanaAnterior; //Te permite retroceder la ventana
     
     public void ocultarTodo() {
@@ -57,11 +64,11 @@ public class Ctrl_Reportes {
         }
     }
     
-    public ConjuntoTrabajos get_Instance_ConjuntoTrabajos (){
+    public ConjuntoTrabajos  get_Inst_CT (){
         return ct;
     }
     
-    public ConjuntoProfesores get_Instance_ConjuntoProfesores (){
+    public ConjuntoProfesores get_Inst_CP (){
         return cp;
     }
     
@@ -132,6 +139,8 @@ public class Ctrl_Reportes {
         private Ctrl_Reportes() {                                       //Constructor
         ICargarProf = new ICargarProfesores(this);
         ICargarTrab = new ICargarTrabajos(this);
+        IReportarProf = null;
+        IReportarCentro = null;
         IReportarPost = null;
         IMen = new IMenu(this);
         ISelectUs = new ISelectUser(this);
@@ -149,6 +158,13 @@ public class Ctrl_Reportes {
     
     public void i_CargarTrabajos() {
         ICargarTrab.setVisible(true);
+    }
+    
+    public void i_Reporte_Profesores(){
+        if(IReportarProf == null){
+            IReportarProf = new I_Reportar_Profesores(this);
+        }
+        IReportarProf.setVisible(true);
     }
     
     public void i_ReportePostgrados() {
@@ -191,31 +207,128 @@ public class Ctrl_Reportes {
     }
     
     //METODOS DE REPORTES
-    public void i_Consultar_Prof() throws ParseException{
-    
-        Date Inicial = new Date();
-        return;
+    public boolean Es_Valido(Date Fecha_Periodo) throws ParseException{//para ver si la fecha del trabajo está dentro del período
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");//definiendo el formato de dato
+        
+        Date Fecha_Minima = sdf.parse("01/02/2014"); //Fecha Tope
+        Date Fecha_Actual = new Date(); //Fecha Actual
+        
+        if( Fecha_Periodo.after(Fecha_Minima) && Fecha_Periodo.before(Fecha_Actual) ) //Si esta en el rango
+            return true;
+        
+        else if( Fecha_Periodo.equals(Fecha_Minima) )
+            return true;
+        
+        else if( Fecha_Periodo.equals(Fecha_Actual) )
+            return true;
+        
+        return false;
+        
+    }
+  //Reportar Trabajos Profesores  
+  public void i_Consultar_Prof(Date fech_li,Date fech_ls,int ord) throws ParseException{
+       //-------------Instancia--------------
+        RePro= new ReporteProfesores();
+       //------------------------------------
+         //para que solo lo haga una vez por carga de trabajos y profesores
+         
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+             Date Fecha_Minima = sdf.parse("01/02/2014"); //Fecha mínima
+             Date Fecha_Actual = new Date(); //Fecha Actual
+
+             Date Fecha_Inicial = null; //Para almacenar las fechas a tomar
+             Date Fecha_Final = null; //Para almacenar las fechas a tomar
+               
+             if( fech_li == null) //si la fecha inferior del periodo esta vacia, poner en ella la fecha minima
+                 fech_li = Fecha_Minima;
+
+             if( fech_ls == null) //Si la fecha superior del periodo esta vacia, poner en ella la fecha actual
+                 fech_ls = Fecha_Actual;
+
+             if( !Es_Valido(fech_li) ){ //Si la fecha inferior del periodo esta fuera de los valores limites
+                 //System.out.println("entro al !Esvalido");
+                 if( fech_li.before(Fecha_Minima) ) //si esta antes que la fecha m¡Minima, poner la fecha Minima
+                     Fecha_Inicial = Fecha_Minima;
+
+                 else if( fech_li.after(Fecha_Actual) ) //si esta despues de la fecha Actual, poner la fecha actual
+                     Fecha_Inicial = Fecha_Actual;
+             }
+             else
+                 Fecha_Inicial = fech_li;
+
+             if( !Es_Valido(fech_ls) ){// si la fecha superior del periodo NO esta dentro del rango
+
+                 if( fech_ls.before(Fecha_Minima) )//si esta antes de la fecha minima fecha Final = fecha Minima
+                     Fecha_Final = Fecha_Minima;
+
+                 else if( fech_ls.after(Fecha_Actual)) //si esta despues de la fecha actual fecha final= fecha actual
+                     Fecha_Final = Fecha_Actual;
+             }else{
+                 Fecha_Final = fech_ls;
+             }
+
+            //--------------------------
+            boolean Evita_add_2vecesTrab; // Evita q un trabajo se agregue dos veces
+            //--------------------------
+            Date fechaDefensa;
+            for(int k=0; k<cp.getListado().size(); k++){
+                RePro.listarProf(cp.getListado().get(k));
+            }
+                for (int i=0; i < ct.getListado().size(); i++){ //Para cada Trabajo para sumar los trabajos
+                //-------------------
+               // System.out.println("entro al for "+i+" veces");
+                //....................Agarra la fecha.....................
+                    fechaDefensa = sdf.parse(ct.getListado().get(i).getFechaDefensa());
+                //q solo lo haga una vez por carga de trabajos y profesores
+                    if(fechaDefensa.before(fech_ls) && fechaDefensa.after(fech_li)){
+                         if(RePro.existeProf(ct.getListado().get(i).getCi_t(), RePro.getListaProf())){ //si el tutor es de la escuela
+                             
+                             for(int j=0; j<RePro.getListaProf().size() ;j++){ //encotrar profesor y sumarle 1 a su cant_Trab
+                                 if(RePro.getListaProf().get(j).getCi().equals(ct.getListado().get(i).getCi_t()) ){
+                                     RePro.getListaProf().get(j).setCant_Trab(RePro.getListaProf().get(j).getCantTrab() + 1);
+                                     break;
+                                 }
+                             }
+                         }
+                         if(RePro.existeProf(ct.getListado().get(i).getCi_t2(), RePro.getListaProf())){ //
+                             // if(Evita_add_2vecesTrab = false){
+                             //   RePro.getListaTrab().add(ct.getListado().get(i));
+                             //}
+                            for(int j=0; j<RePro.getListaProf().size() ;j++){ //encotrar profesor y sumarle 1 a su cant_Trab
+                                if(RePro.getListaProf().get(j).getCi().equals(ct.getListado().get(i).getCi_t2()) ){
+                                    RePro.getListaProf().get(j).setCant_Trab(RePro.getListaProf().get(j).getCantTrab() + 1);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                       
+        RePro.ordenar(ord);
+       
+        ArrayList<Profesor> P=RePro.getListaProf();
+       
+        String[][] matriz1= new String[P.size()][2]; 
+        
+        for(int l=0; l<P.size() ;l++){ //for para ListaProf                  
+            //if(ord==0){
+            // posicion izquierda                                                 Posicion derecha
+             matriz1[l][0]=P.get(l).getApellido()+" "+P.get(l).getNombre() ; matriz1[l][1]= Integer.toString(P.get(l).getCantTrab());
+            //}else if(ord==1){
+                
+           // }
+            
+               
+        }IReportarProf.agregarMatriz(matriz1);
+        System.out.println("terminó");
         
     }
     
     /*
-    
-        //Reportar Trabajos Profesores
-    public void i_Consultar_Prof(Date fech_li, Date fech_ls, int ord) {
-        for (int i=0;i< Size(ConjuntoTrabajos); i++){
-            if(ConjuntoTrabajos.listado[i].getFechaDefensa() <= fech_ls ^ ConjuntoTrabajos.listado[i].getFechaDefensa() >= fecha_li){ 
-                if(ExisteProf(ConjuntoTrabajos.listado[i].getCi_t1)){
-                    ReporteProfesores.Lista.ci_t1.cant_trab++;
-                }
-                if(ExisteProf(ConjuntoTrabajos.listado[i].getCi_t2)){
-                    ReporteProfesores.Lista.ci_t2.cant_trab++;
-                }
-            }
-        }
- ReporteProfesores.Ordenar(ord)
- desplegar(ReporteProfesores);
-    }
-    
+
         //Reportar Trabajos Centros
     public void i_Consultar_Cent(String centro, Date fech_li, Date fech_ls) {
            
