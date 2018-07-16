@@ -8,6 +8,10 @@ import Controlador.*;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -15,15 +19,39 @@ import java.util.logging.Logger;
  * @author CarlosJosé
  */
 public class I_Reportar_Profesores extends javax.swing.JFrame {
-
+    private Ctrl_Reportes CTRL;
     /**
      * Creates new form I_Reportar_Profesores
+     * @param r
      */
-    public I_Reportar_Profesores() {
+    public I_Reportar_Profesores(Ctrl_Reportes r) {
+        CTRL=r;
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+       // Vector a;
+    public void agregarMatriz(String[][] matriz) {
+        
+        Resultados.setModel(new javax.swing.table.DefaultTableModel(
+            matriz,
+            new String [] {    
+                "Profesor", "Trabajos Dirigidos"
+            }
+        ));
+      //  DefaultTableModel tabla = (DefaultTableModel)Resultados.getModel();
+     //    a= new Vector;
+       // tabla.setDataVector(f1.toCharArray(),f2.toCharArray());
+        //tabla.addRow(new Object[]{f1, f2});
+    }
+    
+   // public I_Reportar_Profesores(Ctrl_Reportes aThis) {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
 
+   // public I_Reportar_Profesores(Ctrl_Reportes aThis) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,14 +63,14 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        fecha_inicial = new javax.swing.JTextField();
-        fecha_final = new javax.swing.JTextField();
         Ordenar = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Resultados = new javax.swing.JTable();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        BotonConsultar = new javax.swing.JToggleButton();
+        VolverButton = new javax.swing.JButton();
+        Desde = new com.toedter.calendar.JDateChooser();
+        Hasta = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cantidad de Trabajos por Profesor");
@@ -52,7 +80,12 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
 
         jLabel2.setText("Hasta:");
 
-        Ordenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apellido-Nombre" }));
+        Ordenar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Apellido-Nombre", "Número de Trabajos" }));
+        Ordenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrdenarActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Ordenar por:");
 
@@ -78,7 +111,7 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
                 {null, null}
             },
             new String [] {
-                "Profesor", "Total Trabajos"
+                "Profesor", "Trabajos Dirigidos"
             }
         ));
         jScrollPane1.setViewportView(Resultados);
@@ -86,14 +119,19 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
             Resultados.getColumnModel().getColumn(0).setPreferredWidth(300);
         }
 
-        jToggleButton1.setText("Consultar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonConsultar.setText("Consultar");
+        BotonConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                BotonConsultarActionPerformed(evt);
             }
         });
 
-        jButton1.setText("Volver");
+        VolverButton.setText("Volver");
+        VolverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,51 +142,48 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BotonConsultar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(VolverButton, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Hasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
-                                    .addComponent(Ordenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(38, 38, 38))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(fecha_inicial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fecha_final, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jToggleButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
-                        .addContainerGap())))
+                                    .addComponent(Ordenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fecha_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(Desde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
-                            .addComponent(fecha_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                            .addComponent(Hasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(9, 9, 9)
                         .addComponent(Ordenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(41, 41, 41)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jToggleButton1)
-                            .addComponent(jButton1)))
+                            .addComponent(BotonConsultar)
+                            .addComponent(VolverButton)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -158,14 +193,25 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    private void BotonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConsultarActionPerformed
        Ctrl_Reportes A = Ctrl_Reportes.getInstance();
+       Date fecha_Li=Desde.getDate();
+       Date fecha_Ls=Hasta.getDate();
+       int orden = Ordenar.getSelectedIndex();
         try {
-            A.i_Consultar_Prof();
+            A.i_Consultar_Prof(fecha_Li,fecha_Ls,orden);
         } catch (ParseException ex) {
             Logger.getLogger(I_Reportar_Profesores.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    }//GEN-LAST:event_BotonConsultarActionPerformed
+
+    private void OrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrdenarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OrdenarActionPerformed
+
+    private void VolverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverButtonActionPerformed
+        CTRL.i_Menu();// TODO add your handling code here:
+    }//GEN-LAST:event_VolverButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,23 +241,23 @@ public class I_Reportar_Profesores extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new I_Reportar_Profesores().setVisible(true);
-            }
-        });
+    //    java.awt.EventQueue.invokeLater(new Runnable() {
+        //    public void run() {
+      //          new I_Reportar_Profesores().setVisible(true);
+          //  }
+        //});
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton BotonConsultar;
+    private com.toedter.calendar.JDateChooser Desde;
+    private com.toedter.calendar.JDateChooser Hasta;
     private javax.swing.JComboBox<String> Ordenar;
     private javax.swing.JTable Resultados;
-    private javax.swing.JTextField fecha_final;
-    private javax.swing.JTextField fecha_inicial;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton VolverButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }
