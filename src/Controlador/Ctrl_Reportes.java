@@ -85,15 +85,21 @@ public class Ctrl_Reportes {
         ocultarTodo();
         ISelectUs.setVisible(true);
     }
-    
+        
     public boolean Hay_Conjuntos (){ //Identifica si ya fueron cargados los trabajos y los profesores
         if(ct == null || cp == null) {
             return false;
         } 
-        return (ct.getListado() != null) && (cp.getListado() != null);
+        return (!ct.getListado().isEmpty()) && (!cp.getListado().isEmpty());
     }
         
+    public void Cancelar_Trabajos(){ //Borra el arreglo de los Trabajos
+        ct.getListado().clear();
+    }
     
+    public void Cancelar_Profesores(){ //Borrar el arreglo de los Profesores
+        cp.getListado().clear();
+    }
     
     //METODOS DE LA CLASE CONTROLADORA
     public int i_copiar_archivo_prof(String dir) {
