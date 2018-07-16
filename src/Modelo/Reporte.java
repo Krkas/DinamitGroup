@@ -14,7 +14,7 @@ public abstract class Reporte {
     protected SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     protected ArrayList<Trabajo> ListaTrab;
     protected ArrayList <Profesor> ListaProf;
-    //..............Constructor....................
+ //..............Constructor....................
     public Reporte() throws ParseException
     {   
         ListaTrab= new ArrayList<>();
@@ -24,7 +24,7 @@ public abstract class Reporte {
         fecha_ls = sdf.parse(sdf.format(fecha_ls));       
     }
     //----------------------------------------------------------------------------------
-    public boolean esValido(String fecha_li,String fecha_ls) throws ParseException
+    public boolean esValido(String fecha_li,String fecha_ls) throws ParseException //creo q no se usa
     {
         boolean fli = true;
         boolean fls = true;
@@ -38,7 +38,7 @@ public abstract class Reporte {
         else fls = false;
         return (fli && fls);        
     }
-     public void setList(ArrayList<Trabajo> list)throws ParseException
+    public void addTrab(ArrayList<Trabajo> list)throws ParseException
     {
         Date fecha_trab;
         for(int i = 0 ; i < list.size(); i++)
@@ -50,4 +50,12 @@ public abstract class Reporte {
             }
         }
      }
-}
+
+    public ArrayList<Trabajo> getListaTrab(){
+        return ListaTrab;
+    } 
+    public ArrayList<Profesor> getListaProf(){
+        return ListaProf;
+    }
+
+}   
