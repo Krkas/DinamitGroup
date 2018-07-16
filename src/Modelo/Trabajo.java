@@ -186,7 +186,7 @@ public class Trabajo{
                     } else {
                         Nombre_t1 =" ";
                     }
-                    System.out.println("Listo nt1"+Nombre_t1);
+                   // System.out.println("Listo nt1"+Nombre_t1);
                     li_str = ls_str;
                 ++ls_str; 
                 ++li_str;
@@ -197,7 +197,7 @@ public class Trabajo{
                     } else {
                          ci_t2 =" ";
                     }
-                System.out.println("Listo ci_t2"+ci_t2);
+                //System.out.println("Listo ci_t2"+ci_t2);
                     li_str = ls_str;
                 ++ls_str; 
                 ++li_str;
@@ -208,7 +208,7 @@ public class Trabajo{
                     } else {
                          Apellido_t2 =" ";
                     }
-                System.out.println("Listo at2"+Apellido_t2);
+                //System.out.println("Listo at2"+Apellido_t2);
                     li_str = ls_str;
                 ++ls_str; 
                 ++li_str;
@@ -219,9 +219,9 @@ public class Trabajo{
                     } else {
                          Nombre_t2 =" ";
                     }
-                    System.out.println("Listo nt1"+Nombre_t2);
+                   // System.out.println("Listo nt1"+Nombre_t2);
                 
-                //esto es pa verificar que se este haciendo lo correcto
+               /* //esto es pa verificar que se este haciendo lo correcto
                 System.out.println("ci:"+ci);    
                  System.out.println("apellido1: "+Apellido1);
                 System.out.println("nombre1: "+Nombre1);
@@ -231,7 +231,7 @@ public class Trabajo{
                 System.out.println("sem1erainsc:"+sem1erainsc);
                 System.out.println("fechaDefensa:"+fechaDefensa);
                 System.out.println("ci_t: "+ci_t);
-                
+                */
              
              return 1;
    }  
