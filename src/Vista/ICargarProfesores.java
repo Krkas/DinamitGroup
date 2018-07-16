@@ -146,7 +146,8 @@ public class ICargarProfesores extends javax.swing.JFrame {
     }//GEN-LAST:event_Msj_ProfesorActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        // TODO add your handling code here:
+        CTRL.Cancelar_Profesores();
+        CTRL.activarOpcionesReportesDeMenu(false);
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void Volver(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Volver
