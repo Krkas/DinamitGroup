@@ -13,7 +13,7 @@ public class IMenu extends javax.swing.JFrame {
     private Ctrl_Reportes CTRL;
     
     public void activarPostgrados(boolean b) {
-        RepTrabajosPostgrados.setEnabled(b);
+        ReportarTrabajosPostgrados.setEnabled(b);
    
     }
 
@@ -52,12 +52,12 @@ public class IMenu extends javax.swing.JFrame {
         ConsultarTrabajosProfesor = new javax.swing.JButton();
         ReportarTrabajosProfesores = new javax.swing.JButton();
         ReportarTrabajosCentros = new javax.swing.JButton();
-        ReportarTrabajosPostgrados = new javax.swing.JButton();
         volver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        ReportarTrabajosPostgrados = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Inicio");
@@ -98,13 +98,6 @@ public class IMenu extends javax.swing.JFrame {
             }
         });
 
-        RepTrabajosPostgrados.setText("Reportar Trabajos de Postgrado");
-        RepTrabajosPostgrados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RepTrabajosPostgradosActionPerformed(evt);
-            }
-        });
-
         volver.setText("Volver");
         volver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +112,13 @@ public class IMenu extends javax.swing.JFrame {
         jLabel3.setText("2.");
 
         jLabel4.setText("3.");
+
+        ReportarTrabajosPostgrados.setText("Reportar Trabajos de Postgrado");
+        ReportarTrabajosPostgrados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReportarTrabajosPostgradosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,7 +145,7 @@ public class IMenu extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ReportarTrabajosProfesores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ReportarTrabajosCentros, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(RepTrabajosPostgrados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(ReportarTrabajosPostgrados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(20, 20, 20))
             .addGroup(layout.createSequentialGroup()
                 .addGap(82, 82, 82)
@@ -176,14 +176,14 @@ public class IMenu extends javax.swing.JFrame {
                     .addComponent(ReportarTrabajosCentros)
                     .addComponent(CargarProfesores))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RepTrabajosPostgrados)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(ReportarTrabajosPostgrados))
+                .addGap(31, 31, 31)
                 .addComponent(ConsultarTrabajosProfesor)
                 .addGap(18, 18, 18)
                 .addComponent(volver)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,9 +216,9 @@ public class IMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReportarTrabajosCentrosActionPerformed
 
-    private void ReportarTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RepTrabajosPostgradosActionPerformed
-        CTRL.i_Reporte_Postgrados();// TODO add your handling code here:
-    }//GEN-LAST:event_RepTrabajosPostgradosActionPerformed
+    private void ReportarTrabajosPostgradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReportarTrabajosPostgradosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReportarTrabajosPostgradosActionPerformed
 
 
 
@@ -226,8 +226,8 @@ public class IMenu extends javax.swing.JFrame {
     private javax.swing.JButton CargarProfesores;
     private javax.swing.JButton CargarTrabajos;
     private javax.swing.JButton ConsultarTrabajosProfesor;
-    private javax.swing.JButton ReportarTrabajosPostgrados;
     private javax.swing.JButton ReportarTrabajosCentros;
+    private javax.swing.JButton ReportarTrabajosPostgrados;
     private javax.swing.JButton ReportarTrabajosProfesores;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

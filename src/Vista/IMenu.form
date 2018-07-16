@@ -51,7 +51,7 @@
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="ReportarTrabajosProfesores" max="32767" attributes="0"/>
                           <Component id="ReportarTrabajosCentros" max="32767" attributes="0"/>
-                          <Component id="RepTrabajosPostgrados" max="32767" attributes="0"/>
+                          <Component id="ReportarTrabajosPostgrados" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -92,15 +92,15 @@
                   <Component id="CargarProfesores" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="RepTrabajosPostgrados" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="ReportarTrabajosPostgrados" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Component id="ConsultarTrabajosProfesor" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="volver" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -146,14 +146,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReportarTrabajosCentrosActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="RepTrabajosPostgrados">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Reportar Trabajos de Postgrado"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RepTrabajosPostgradosActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="volver">
       <Properties>
         <Property name="text" type="java.lang.String" value="Volver"/>
@@ -181,6 +173,14 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="3."/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="ReportarTrabajosPostgrados">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Reportar Trabajos de Postgrado"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReportarTrabajosPostgradosActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
