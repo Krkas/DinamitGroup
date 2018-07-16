@@ -140,7 +140,8 @@ public class ICargarTrabajos extends javax.swing.JFrame {
     }//GEN-LAST:event_Volver
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
-        
+        CTRL.Cancelar_Profesores();
+        CTRL.activarOpcionesReportesDeMenu(false);
     }//GEN-LAST:event_CancelarActionPerformed
 
 
